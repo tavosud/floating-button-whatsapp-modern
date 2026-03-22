@@ -1,6 +1,6 @@
 {
   "name": "@tavosud/floating-button-whatsapp-modern",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Boton flotante de WhatsApp completamente personalizable, compatible con todos los frameworks JavaScript y TypeScript",
   "keywords": [
     "whatsapp",
@@ -16,6 +16,14 @@
   ],
   "license": "ISC",
   "author": "Gustavo Cuyutupa",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tavosud/floating-button-whatsapp-modern.git"
+  },
+  "homepage": "https://github.com/tavosud/floating-button-whatsapp-modern#readme",
+  "bugs": {
+    "url": "https://github.com/tavosud/floating-button-whatsapp-modern/issues"
+  },
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
