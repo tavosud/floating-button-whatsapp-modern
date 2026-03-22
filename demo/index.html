@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Demo — floating-button-whatsapp-modern</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f0f2f5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 24px;
+    }
+    h1 { font-size: 22px; color: #333; }
+    p  { color: #666; font-size: 14px; text-align: center; max-width: 420px; }
+    .controls {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+      max-width: 420px;
+    }
+    label { font-size: 13px; color: #444; font-weight: 600; }
+    input, select, textarea {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 13px;
+      margin-top: 4px;
+    }
+    textarea { resize: vertical; min-height: 60px; }
+    button.reload-btn {
+      background: #25D366;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: filter 0.2s;
+    }
+    button.reload-btn:hover { filter: brightness(1.08); }
+    .color-row { display: flex; gap: 8px; align-items: center; }
+    .color-row input[type="color"] { width: 40px; height: 34px; padding: 2px; margin-top: 4px; }
+    .color-row input[type="text"] { flex: 1; }
+  </style>
+</head>
+<body>
+
+  <h1>🟢 Demo — WhatsApp Floating Button</h1>
+  <p>Modifica los campos y haz clic en "Aplicar" para ver los cambios en tiempo real.</p>
+
+  <div class="controls">
+    <div>
+      <label>Teléfono (con código de país)</label>
+      <input id="phone" type="text" value="51987654321" />
+    </div>
+    <div>
+      <label>Nombre</label>
+      <input id="name" type="text" value="Carlos Ochoa" />
+    </div>
+    <div>
+      <label>Slogan</label>
+      <input id="slogan" type="text" value="Available" />
+    </div>
+    <div>
+      <label>URL del avatar (opcional)</label>
+      <input id="avatar" type="text" placeholder="https://ejemplo.com/foto.jpg" />
+    </div>
+    <div>
+      <label>Mensaje predefinido</label>
+      <textarea id="message">Hi there!, how can I assist you?</textarea>
+    </div>
+    <div>
+      <label>Texto botón enviar</label>
+      <input id="sendLabel" type="text" value="Start chat with us" />
+    </div>
+    <div>
+      <label>Posición</label>
+      <select id="position">
+        <option value="bottom-right" selected>Bottom Right</option>
+        <option value="bottom-left">Bottom Left</option>
+        <option value="top-right">Top Right</option>
+        <option value="top-left">Top Left</option>
+      </select>
+    </div>
+
+    <hr style="border:none;border-top:1px solid #eee" />
+
+    <div>
+      <label>Color fondo header</label>
+      <div class="color-row">
+        <input type="color" id="c-headerBg" value="#075E54" oninput="document.getElementById('t-headerBg').value=this.value" />
+        <input type="text"  id="t-headerBg" value="#075E54" oninput="document.getElementById('c-headerBg').value=this.value" />
+      </div>
+    </div>
+    <div>
+      <label>Color fondo botón FAB</label>
+      <div class="color-row">
+        <input type="color" id="c-btnBg" value="#25D366" oninput="document.getElementById('t-btnBg').value=this.value" />
+        <input type="text"  id="t-btnBg" value="#25D366" oninput="document.getElementById('c-btnBg').value=this.value" />
+      </div>
+    </div>
+    <div>
+      <label>Color fondo body</label>
+      <div class="color-row">
+        <input type="color" id="c-bodyBg" value="#ECE5DD" oninput="document.getElementById('t-bodyBg').value=this.value" />
+        <input type="text"  id="t-bodyBg" value="#ECE5DD" oninput="document.getElementById('c-bodyBg').value=this.value" />
+      </div>
+    </div>
+    <div>
+      <label>Color botón enviar</label>
+      <div class="color-row">
+        <input type="color" id="c-sendBg" value="#25D366" oninput="document.getElementById('t-sendBg').value=this.value" />
+        <input type="text"  id="t-sendBg" value="#25D366" oninput="document.getElementById('c-sendBg').value=this.value" />
+      </div>
+    </div>
+
+    <button class="reload-btn" onclick="applyWidget()">▶ Aplicar cambios</button>
+  </div>
+
+  <script type="module">
+    import { WhatsAppButton } from '../dist/index.esm.js';
+
+    let currentBtn = null;
+
+    window.applyWidget = function () {
+      if (currentBtn) currentBtn.unmount();
+
+      currentBtn = new WhatsAppButton({
+        phone:           document.getElementById('phone').value.trim(),
+        name:            document.getElementById('name').value.trim(),
+        slogan:          document.getElementById('slogan').value.trim(),
+        avatar:          document.getElementById('avatar').value.trim() || undefined,
+        message:         document.getElementById('message').value.trim(),
+        sendButtonLabel: document.getElementById('sendLabel').value.trim(),
+        position:        document.getElementById('position').value,
+        autoOpenDelay:   1500,
+        colors: {
+          headerBackground: document.getElementById('t-headerBg').value,
+          buttonBackground: document.getElementById('t-btnBg').value,
+          bodyBackground:   document.getElementById('t-bodyBg').value,
+          sendButtonBackground: document.getElementById('t-sendBg').value,
+        },
+      });
+
+      currentBtn.mount();
+    };
+
+    // Carga automática al iniciar
+    window.applyWidget();
+  </script>
+</body>
+</html>

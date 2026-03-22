@@ -1,0 +1,40 @@
+{
+  "name": "@tavosud/floating-button-whatsapp-modern",
+  "version": "1.0.4",
+  "description": "Boton flotante de WhatsApp completamente personalizable, compatible con todos los frameworks JavaScript y TypeScript",
+  "keywords": [
+    "whatsapp",
+    "floating-button",
+    "whatsapp-button",
+    "chat-widget",
+    "whatsapp-widget",
+    "vanilla-js",
+    "typescript",
+    "react",
+    "vue",
+    "angular"
+  ],
+  "license": "ISC",
+  "author": "Gustavo Cuyutupa",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "node scripts/build.js",
+    "dev": "node scripts/build.js --watch",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}
