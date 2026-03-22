@@ -5,6 +5,7 @@ Fully customizable WhatsApp floating button with a chat-style popup. Compatible 
 [![npm version](https://img.shields.io/npm/v/@tavosud/floating-button-whatsapp-modern)](https://www.npmjs.com/package/@tavosud/floating-button-whatsapp-modern)
 [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
 [![Demo en CodeSandbox](https://img.shields.io/badge/Demo-CodeSandbox-black?logo=codesandbox)](https://codesandbox.io/p/sandbox/floating-button-whatsapp-modern-8nss88)
+[![Ko-fi](https://img.shields.io/badge/Support%20me-Ko--fi-FF5E5B?logo=ko-fi&logoColor=white)](https://ko-fi.com/tavosud)
 
 ![Preview](assets/preview.jpg)
 
