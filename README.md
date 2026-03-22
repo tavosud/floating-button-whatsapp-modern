@@ -1,6 +1,6 @@
 # @tavosud/floating-button-whatsapp-modern
 
-Botón flotante de WhatsApp completamente personalizable con popup estilo chat. Compatible con Vanilla JS, TypeScript, React, Vue, Angular y cualquier framework JavaScript/TypeScript.
+Fully customizable WhatsApp floating button with a chat-style popup. Compatible with Vanilla JS, TypeScript, React, Vue, Angular, and any JavaScript/TypeScript framework.
 
 [![npm version](https://img.shields.io/npm/v/@tavosud/floating-button-whatsapp-modern)](https://www.npmjs.com/package/@tavosud/floating-button-whatsapp-modern)
 [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
@@ -10,19 +10,19 @@ Botón flotante de WhatsApp completamente personalizable con popup estilo chat. 
 
 ---
 
-## Características
+## Features
 
-- **Popup estilo WhatsApp** — encabezado con avatar, indicador online, nombre y slogan; burbuja de mensaje con nombre del remitente; botón de envío tipo píldora
-- **Animación shake** — el botón flotante se sacude periódicamente para llamar la atención (cada 6 s, pausa al hacer hover)
-- **Totalmente personalizable** — 9 propiedades de color + posición, texto y más
-- **Sin dependencias** — cero dependencias en producción
-- **CSS separado** — incluye un archivo `.css` standalone para uso con CDN
-- **Formatos ESM y CJS** — compatible con bundlers modernos y Node.js
-- **TypeScript nativo** — tipos incluidos
+- **WhatsApp-style popup** — header with avatar, online indicator, name and slogan; message bubble with sender name; pill-shaped send button
+- **Shake animation** — the floating button periodically shakes to draw attention (every 6 s, pauses on hover)
+- **Fully customizable** — 9 color properties + position, text, and more
+- **Zero dependencies** — no production dependencies
+- **Standalone CSS** — includes a standalone `.css` file for CDN usage
+- **ESM and CJS formats** — compatible with modern bundlers and Node.js
+- **Native TypeScript** — types included
 
 ---
 
-## Instalación
+## Installation
 
 ```bash
 npm install @tavosud/floating-button-whatsapp-modern
@@ -30,7 +30,7 @@ npm install @tavosud/floating-button-whatsapp-modern
 
 ---
 
-## Uso rápido
+## Quick start
 
 ### Vanilla JS / TypeScript
 
@@ -38,20 +38,20 @@ npm install @tavosud/floating-button-whatsapp-modern
 import { createWhatsAppButton } from '@tavosud/floating-button-whatsapp-modern';
 
 createWhatsAppButton({
-  phone:   '51987654321',         // requerido — con código de país
-  name:    'Soporte',
-  slogan:  'Respondemos en minutos',
-  avatar:  'https://ejemplo.com/foto.jpg',
-  message: 'Hola, tengo una consulta sobre...',
+  phone:   '51987654321',         // required — include country code
+  name:    'Support',
+  slogan:  'We reply in minutes',
+  avatar:  'https://example.com/photo.jpg',
+  message: 'Hi, I have a question about...',
 });
 ```
 
 ### HTML (CDN / script tag)
 
-Incluye el CSS standalone y el módulo JS:
+Include the standalone CSS and the JS module:
 
 ```html
-<!-- Estilos base (opcional si ya los incluye tu bundler) -->
+<!-- Base styles (optional if already included by your bundler) -->
 <link rel="stylesheet" href="https://unpkg.com/@tavosud/floating-button-whatsapp-modern/dist/floating-button-whatsapp-modern.css">
 
 <script type="module">
@@ -59,9 +59,9 @@ Incluye el CSS standalone y el módulo JS:
 
   createWhatsAppButton({
     phone:   '51987654321',
-    name:    'Ventas',
-    slogan:  '¡Hola! ¿Cómo podemos ayudarte?',
-    message: 'Hola, quiero más información.',
+    name:    'Sales',
+    slogan:  'Hi! How can we help you?',
+    message: 'Hello, I would like more information.',
   });
 </script>
 ```
@@ -78,9 +78,9 @@ export function WhatsAppWidget() {
   useEffect(() => {
     btnRef.current = new WhatsAppButton({
       phone:   '51987654321',
-      name:    'Ventas',
-      slogan:  '¡Hola! ¿Cómo podemos ayudarte?',
-      message: 'Hola, quiero más información.',
+      name:    'Sales',
+      slogan:  'Hi! How can we help you?',
+      message: 'Hello, I would like more information.',
     });
     btnRef.current.mount();
 
@@ -104,8 +104,8 @@ export function useWhatsApp() {
   onMounted(() => {
     btn = new WhatsAppButton({
       phone:   '51987654321',
-      name:    'Soporte',
-      slogan:  'Respondemos en minutos',
+      name:    'Support',
+      slogan:  'We reply in minutes',
     });
     btn.mount();
   });
@@ -128,7 +128,7 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.btn = new WhatsAppButton({
       phone:   '51987654321',
-      name:    'Soporte',
+      name:    'Support',
     });
     this.btn.mount();
   }
@@ -139,45 +139,45 @@ export class AppComponent implements OnInit, OnDestroy {
 
 ---
 
-## Opciones
+## Options
 
-| Propiedad         | Tipo                   | Default                              | Descripción                                                                  |
+| Property          | Type                   | Default                              | Description                                                                  |
 |-------------------|------------------------|--------------------------------------|------------------------------------------------------------------------------|
-| `phone`           | `string`               | **requerido**                        | Número con código de país (solo dígitos). Ej: `'51987654321'`                |
-| `name`            | `string`               | `'WhatsApp'`                         | Nombre mostrado en el encabezado del popup                                   |
-| `slogan`          | `string`               | `'Normalmente responde en minutos'`  | Subtítulo debajo del nombre                                                  |
-| `avatar`          | `string`               | *(icono genérico)*                   | URL de la foto de perfil mostrada en el encabezado                           |
-| `message`         | `string`               | `''`                                 | Mensaje predefinido que se envía al abrir WhatsApp                           |
-| `position`        | `ButtonPosition`       | `'bottom-right'`                     | Posición del botón: `'bottom-right'` \| `'bottom-left'` \| `'top-right'` \| `'top-left'` |
-| `sendButtonLabel` | `string`               | `'Enviar mensaje'`                   | Texto del botón de envío                                                     |
-| `autoOpenDelay`   | `number`               | `0`                                  | Milisegundos antes de abrir el popup automáticamente. `0` = desactivado      |
-| `zIndex`          | `number`               | `9999`                               | z-index del widget                                                           |
-| `target`          | `string`               | `'body'`                             | Selector CSS del elemento donde montar el widget                             |
-| `colors`          | `WhatsAppButtonColors` | *(colores oficiales de WhatsApp)*    | Objeto de personalización de colores (ver tabla a continuación)              |
+| `phone`           | `string`               | **required**                         | Phone number with country code (digits only). E.g.: `'51987654321'`          |
+| `name`            | `string`               | `'WhatsApp'`                         | Name shown in the popup header                                               |
+| `slogan`          | `string`               | `'Typically replies in minutes'`     | Subtitle shown below the name                                                |
+| `avatar`          | `string`               | *(generic icon)*                     | URL of the profile picture shown in the header                               |
+| `message`         | `string`               | `''`                                 | Pre-filled message sent when opening WhatsApp                                |
+| `position`        | `ButtonPosition`       | `'bottom-right'`                     | Button position: `'bottom-right'` \| `'bottom-left'` \| `'top-right'` \| `'top-left'` |
+| `sendButtonLabel` | `string`               | `'Send message'`                     | Label for the send button                                                    |
+| `autoOpenDelay`   | `number`               | `0`                                  | Milliseconds before the popup opens automatically. `0` = disabled           |
+| `zIndex`          | `number`               | `9999`                               | z-index of the widget                                                        |
+| `target`          | `string`               | `'body'`                             | CSS selector of the element where the widget will be mounted                 |
+| `colors`          | `WhatsAppButtonColors` | *(official WhatsApp colors)*         | Color customization object (see table below)                                 |
 
-### Colores (`colors`)
+### Colors (`colors`)
 
-| Propiedad                   | Default     | Descripción                                    |
-|-----------------------------|-------------|------------------------------------------------|
-| `headerBackground`          | `#075E54`   | Color de fondo del encabezado del popup        |
-| `headerText`                | `#FFFFFF`   | Color del texto e iconos del encabezado        |
-| `bodyBackground`            | `#ECE5DD`   | Color de fondo del cuerpo del popup            |
-| `buttonBackground`          | `#25D366`   | Color de fondo del botón flotante (FAB)        |
-| `buttonIcon`                | `#FFFFFF`   | Color del icono de WhatsApp en el FAB          |
-| `sendButtonBackground`      | `#25D366`   | Color de fondo del botón "Enviar mensaje"      |
-| `sendButtonText`            | `#FFFFFF`   | Color del texto del botón "Enviar mensaje"     |
-| `messageBubbleBackground`   | `#FFFFFF`   | Color de fondo de la burbuja de mensaje        |
-| `messageBubbleText`         | `#333333`   | Color del texto dentro de la burbuja          |
+| Property                    | Default     | Description                                        |
+|-----------------------------|-------------|----------------------------------------------------|
+| `headerBackground`          | `#075E54`   | Background color of the popup header               |
+| `headerText`                | `#FFFFFF`   | Text and icon color in the header                  |
+| `bodyBackground`            | `#ECE5DD`   | Background color of the popup body                 |
+| `buttonBackground`          | `#25D366`   | Background color of the floating button (FAB)      |
+| `buttonIcon`                | `#FFFFFF`   | WhatsApp icon color in the FAB                     |
+| `sendButtonBackground`      | `#25D366`   | Background color of the "Send message" button      |
+| `sendButtonText`            | `#FFFFFF`   | Text color of the "Send message" button            |
+| `messageBubbleBackground`   | `#FFFFFF`   | Background color of the message bubble             |
+| `messageBubbleText`         | `#333333`   | Text color inside the message bubble               |
 
-### Ejemplo con colores personalizados
+### Example with custom colors
 
 ```ts
 createWhatsAppButton({
   phone:   '51987654321',
-  name:    'Mi Empresa',
-  slogan:  'Atención 24/7',
+  name:    'My Company',
+  slogan:  '24/7 Support',
   avatar:  '/img/logo.png',
-  message: '¡Hola! Me interesa obtener más información.',
+  message: 'Hi! I would like to get more information.',
   colors: {
     headerBackground:        '#1A237E',
     headerText:              '#FFFFFF',
@@ -194,34 +194,34 @@ createWhatsAppButton({
 
 ---
 
-## API de instancia
+## Instance API
 
 ```ts
 const btn = new WhatsAppButton({ phone: '51987654321' });
 
-btn.mount();    // Inserta el widget en el DOM
-btn.open();     // Abre el popup programáticamente
-btn.close();    // Cierra el popup
-btn.toggle();   // Alterna abierto/cerrado
-btn.unmount();  // Elimina completamente el widget del DOM
+btn.mount();    // Inserts the widget into the DOM
+btn.open();     // Opens the popup programmatically
+btn.close();    // Closes the popup
+btn.toggle();   // Toggles open/closed
+btn.unmount();  // Completely removes the widget from the DOM
 ```
 
 ---
 
-## Archivos distribuidos
+## Distributed files
 
 ```
 dist/
-├── index.esm.js                          # Módulo ES (para bundlers: Vite, Webpack, etc.)
-├── index.cjs.js                          # CommonJS (para Node.js / require)
-├── index.d.ts                            # Tipos TypeScript
-├── types.d.ts                            # Tipos auxiliares
-└── floating-button-whatsapp-modern.css   # CSS standalone (para uso con CDN o <link>)
+├── index.esm.js                          # ES Module (for bundlers: Vite, Webpack, etc.)
+├── index.cjs.js                          # CommonJS (for Node.js / require)
+├── index.d.ts                            # TypeScript types
+├── types.d.ts                            # Auxiliary types
+└── floating-button-whatsapp-modern.css   # Standalone CSS (for CDN or <link> usage)
 ```
 
 ---
 
-## Build del proyecto
+## Build
 
 ```bash
 npm install
@@ -230,6 +230,6 @@ npm run build
 
 ---
 
-## Licencia
+## License
 
 ISC © Gustavo Cuyutupa
