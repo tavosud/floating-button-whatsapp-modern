@@ -5,6 +5,8 @@ Botón flotante de WhatsApp completamente personalizable con popup estilo chat. 
 [![npm version](https://img.shields.io/npm/v/@tavosud/floating-button-whatsapp-modern)](https://www.npmjs.com/package/@tavosud/floating-button-whatsapp-modern)
 [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
 
+![Preview](assets/preview.jpg)
+
 ---
 
 ## Características
